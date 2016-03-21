@@ -1,0 +1,5 @@
+#work_shop_application:
+#    resource: "@WorkShopApplicationBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#    

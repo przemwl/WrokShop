@@ -1,0 +1,37 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        WorkShop\ApplicationBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:      
+        our_db_provider:
+            entity:
+                class: WorkShop\ApplicationBundle\Entity\User
+                property: username
+
+    access_control:
+        - { path: ^/secured_area, roles: ROLE_USER }
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html

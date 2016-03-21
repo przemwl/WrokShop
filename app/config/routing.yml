@@ -1,0 +1,20 @@
+#work_shop_application:
+#    resource: "@WorkShopApplicationBundle/Resources/config/routing.yml"
+#    
+#
+#
+#    
+#
+
+
+api:
+    resource: "@WorkShopApplicationBundle/Controller/"
+    type:   annotation
+    prefix: /
+
+
+login_check:
+     path:   /login_check
+
+#logout:
+#     pattern: /logout
