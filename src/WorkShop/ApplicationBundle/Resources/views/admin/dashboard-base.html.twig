@@ -1,0 +1,30 @@
+{% extends 'WorkShopApplicationBundle::base.html.twig' %}
+
+{% block links %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/workshopapplication/css/dashboard.css') }}" />
+{% endblock %}
+
+{% block body %}
+    {% embed 'WorkShopApplicationBundle:admin:dashboard-top-nav.html.twig' %}
+        {% block top_nav %} {{ parent() }} {% endblock %}
+    {% endembed %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                {% embed 'WorkShopApplicationBundle:admin:dashboard-left-menu.html.twig' %}
+                    {% block left_menu %} {{ parent() }} {% endblock %}
+                {% endembed %}
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Dashboard</h1>
+                    {% block dashboard_content %} {% endblock %}
+            </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"> </script>    
+    <script src="{{ asset('bundles/workshopapplication/inc/bootstrap/javascripts/bootstrap.min.js') }}"> </script>
+{% endblock %}

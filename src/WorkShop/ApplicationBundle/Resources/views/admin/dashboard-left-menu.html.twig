@@ -1,0 +1,34 @@
+{%
+    set left_menu = [
+            {
+                'path_name' : 'workshop_application_admin_index',
+                'title' : 'Overview' 
+            },
+            {
+                'path_name' : 'workshop_application_admin_workers',
+                'title' : 'Workers' 
+            },
+            {
+                'path_name' : 'workshop_application_admin_statistics',
+                'title' : 'Statistics' 
+            }
+    ]
+%}
+
+{%
+set current_item = app.request.get('_route')
+%}
+{% block left_menu %}
+
+          <ul class="nav nav-sidebar">
+            {% for item in left_menu %}
+                {% if current_item == item.path_name %}
+                       {% set class="active" %}
+                {% else %}
+                       {% set class="" %}
+                {% endif %}
+                <li class="{{ class }}"><a href="{{ path(item.path_name) }} "> {{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+
+{% endblock %}

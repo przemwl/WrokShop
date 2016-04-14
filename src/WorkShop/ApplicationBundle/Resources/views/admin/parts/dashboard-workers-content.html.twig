@@ -1,0 +1,69 @@
+{% extends 'WorkShopApplicationBundle:admin:dashboard-base.html.twig' %}
+{% block dashboard_content %}
+    {% if worker_added is not null %}
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <span class="sr-only">Success:</span>
+            Worker successfully added!
+        </div>
+       
+    {% endif %}
+    <div class="panel panel-primary"> 
+        <div class="panel-heading"> 
+            <h3 class="panel-title">Add Worker</h3> 
+        </div> 
+        <div class="panel-body"> 
+            <form action="{{ path('workshop_application_admin_workers_add') }}" method="POST">
+                <input type="text" class="form-control" placeholder="Worker name" name="worker_name" required>
+                <input type="text" class="form-control" placeholder="Worker salary" name="worker_salary" required />
+                <textarea class="form-control" name="worker_info"> Optional notes...</textarea>
+                <button class="btn btn-lg btn-success btn-block" type="submit">Add Worker</button>   
+            </form>
+        </div> 
+    </div>
+    <div class="panel panel-success"> 
+        <div class="panel-heading"> 
+            <h3 class="panel-title">Already hired</h3> 
+        </div> 
+        <div class="panel-body"> </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Worker name </th>
+                    <th> Wroker salary</th>
+                    <th> Hired date </th>
+                    <th> Notes </th>
+                    <th> Change worker data </th>
+                    <th> Fire worker </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for worker in workers %}
+                      
+                    <tr>
+                        
+                        <td> {{ worker.id }} </td>
+                        <td> {{ worker.getWorkerName() }} </td>
+                        <td> {{ worker.getSalary() }} </td>
+                        <td> {{ worker.getCreationTime()|date('d-m-Y') }} </td>
+                        <td> {{ worker.getNotes() }} </td>
+                        <td> 
+                            <a href="" class="btn btn-default" aria-label="Left Align"> 
+                               Change worker data
+                            </a>
+                        </td>
+                        <td> 
+                            <a href="" class="btn btn-danger" aria-label="Left Align"> 
+                               Fire worker
+                            </a>
+                        </td>
+                    </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table> 
+    </div>
+
+{% endblock %}

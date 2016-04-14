@@ -1,5 +1,5 @@
 <?php 
-// src/AppBundle/Entity/User.php
+
 namespace WorkShop\ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="app_users")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="WorkShop\ApplicationBundle\Entity\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {

@@ -9,11 +9,11 @@ security:
     providers:      
         our_db_provider:
             entity:
-                class: WorkShop\ApplicationBundle\Entity\User
+                class: WorkShopApplicationBundle:User
                 property: username
 
     access_control:
-        - { path: ^/secured_area, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_USER }
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -24,10 +24,11 @@ security:
         main:
             anonymous: ~
             form_login:
-                login_path: login
-                check_path: login_check
-
-
+                login_path: /
+                csrf_token_generator: security.csrf.token_manager
+                default_target_path: /admin
+            logout:
+               path:   /logout
             # activate different ways to authenticate
 
             # http_basic: ~

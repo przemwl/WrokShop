@@ -1,0 +1,42 @@
+{% extends 'WorkShopApplicationBundle::base.html.twig' %}
+
+
+
+{% block body %}
+<div class='workshop_container'>
+	<h2> Welcome to the WorkShop! </h2>
+</div>
+<div class="container">
+     {% if error.messageKey is defined  %}
+               {{ error.messageKey|trans(error.messageData, 'security')  }}
+     {% endif %}
+     
+     {% if is_granted('ROLE_USER') == false %}
+      <form class="form-signin" action="{{ path('login_check') }}" method="POST">
+            <h2 class="form-signin-heading">Sing in</h2>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="Username" name="_username" required>
+
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="_password"  id="password" class="form-control" placeholder="Password" />
+
+            <div class="checkbox">
+              <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" checked /> Remeber me
+              </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>   
+      </form>
+      {% else %}
+        <form class="form-signin" action="{{ path('workshop_application_logout') }}" method="POST">
+            <p> You're currently logged as <strong> {{ app.user.username }} </strong> </br>
+            To log out click button in bottom ... </p>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log out  </button>   
+        </form>
+      {% endif %}
+</div>
+
+{% endblock %} 
